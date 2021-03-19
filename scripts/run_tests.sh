@@ -15,6 +15,9 @@ fi
 if [[ -f "${targetDirectory}/Pipfile" ]]; then
 	echo "Pipfile found, installing..."
 	cd "${targetDirectory}"
+	if [[ ! -f "Pipfile.lock" ]]; then
+		pipenv install
+	fi
 	pipenv sync
 	pipenv sync --dev
 	cd -

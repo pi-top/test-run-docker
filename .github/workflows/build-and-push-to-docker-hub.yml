@@ -1,0 +1,48 @@
+name: Build Image, Push to Docker Hub (on master)
+
+on: push
+
+
+jobs:
+  build-push-docker-hub:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0
+
+      - name: Build, don't push (test)
+        if: github.ref != 'refs/heads/master'
+        uses: docker/build-push-action@v2
+        with:
+          # AMD64 - just to test
+          platforms: linux/amd64
+          push: false
+
+      - name: Set up Docker Buildx
+        if: github.ref == 'refs/heads/master'
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+          install: true
+
+      - name: Login to Docker Hub
+        if: github.ref == 'refs/heads/master'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build and push
+        id: docker_build_push
+        if: github.ref == 'refs/heads/master'
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/amd64
+          push: true
+          tags: pitop/test-run:latest
+
+      - name: Show image digest
+        if: github.ref == 'refs/heads/master'
+        run: echo ${{ steps.docker_build_push.outputs.digest }}

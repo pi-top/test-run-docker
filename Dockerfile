@@ -4,27 +4,40 @@ VOLUME /src
 
 RUN apt-get update
 
-RUN apt-get install -y git \
+RUN apt-get install -y \
+  git \
 	libsystemd-dev \
 	pkg-config \
-	python3.7 \
 	python3-pip \
-	python-pytest \
-	libv4l-dev
+	python3.7
 
-RUN pip3 install pytest \
-	pytest-cov \
-	pipenv \
-	nose \
+# External dependencies
+RUN apt-get install -y \
+	libv4l-dev \
+	yarnpkg
+
+
+RUN pip3 install \
 	coverage \
+	cython \
+	nose \
 	nose-pathmunge \
-	cython
+	pipenv \
+	pytest-cov \
+  pytest
 
-ENV TESTS_DIR=""
-ENV TARGET_DIR=""
-ENV COVERAGE_DIR=""
+ENV DEBUG=1
+ENV RUN_PYTHON_TESTS=1
+ENV RUN_WEB_TESTS=0
+
+ENV PYTHON_TESTS_DIR=""
+ENV PYTHON_TARGET_DIR=""
+ENV PYTHON_COVERAGE_DIR=""
+ENV WEB_TESTS_DIR=""
 
 WORKDIR /src
 
-COPY scripts/run_tests.sh /run_tests
-ENTRYPOINT ["/run_tests"]
+COPY scripts/entrypoint.sh /entrypoint
+COPY scripts/run_python_tests.sh /run_python_tests
+COPY scripts/run_web_tests.sh /run_web_tests
+ENTRYPOINT ["/entrypoint"]

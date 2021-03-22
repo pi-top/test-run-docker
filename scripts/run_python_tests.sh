@@ -1,8 +1,15 @@
-#!/bin/bash -ex
+#!/bin/bash
+###############################################################
+#                Unofficial 'Bash strict mode'                #
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/  #
+###############################################################
+set -euo pipefail
+IFS=$'\n\t'
+###############################################################
 
-testsDirectory="${TESTS_DIR:-.}"
-targetDirectory="$TARGET_DIR"
-coverageDirectory="${COVERAGE_DIR:-$targetDirectory}"
+testsDirectory="${PYTHON_TESTS_DIR:-.}"
+targetDirectory="$PYTHON_TARGET_DIR"
+coverageDirectory="${PYTHON_COVERAGE_DIR:-$targetDirectory}"
 echo "Running tests from ${testsDirectory}"
 echo "Target directory is ${targetDirectory}"
 echo "Coverage directory is ${coverageDirectory}"

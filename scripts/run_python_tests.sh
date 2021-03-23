@@ -52,3 +52,8 @@ else
 		--cover-package="${coverageDirectory}" \
 		"${testsDirectory}"
 fi
+
+echo "Cleaning up..."
+find . | grep -E '(__pycache__|\\.pyc|\\.pyo\$)' | xargs rm -rf || true
+find . | grep '.coverage$' | xargs rm -rf || true
+find . | grep '.pytest_cache' | xargs rm -rf || true

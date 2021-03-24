@@ -54,6 +54,7 @@ else
 fi
 
 echo "Cleaning up..."
+cd /src
 find . | grep -E '(__pycache__|\\.pyc|\\.pyo\$)' | xargs rm -rf || true
 find . | grep '.coverage$' | xargs rm -rf || true
 find . | grep '.pytest_cache' | xargs rm -rf || true

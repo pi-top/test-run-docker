@@ -16,17 +16,19 @@ RUN apt-get install -y \
   # Web UIs
   yarnpkg \
   # SDK
-  libv4l-dev \
-  python3-opencv
+  libv4l-dev
 
 RUN pip3 install -U \
+  # Test requirements
   coverage \
   cython \
   nose \
   nose-pathmunge \
   pipenv \
   pytest-cov \
-  pytest
+  pytest \
+  # SDK
+  opencv-python
 
 
 ENV DEBUG=1

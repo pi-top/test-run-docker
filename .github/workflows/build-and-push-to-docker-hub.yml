@@ -1,7 +1,11 @@
 name: Build Image, Push to Docker Hub (on master)
 
-on: push
-
+on:
+  # Run on any commit
+  push:
+  schedule:
+    # Run daily at midnight
+    - cron:  '0 0 * * *'
 
 jobs:
   build-push-docker-hub:
@@ -19,6 +23,10 @@ jobs:
           # AMD64 - just to test
           platforms: linux/amd64
           push: false
+
+      # - name: Set up QEMU
+      #   if: github.ref == 'refs/heads/master'
+      #   uses: docker/setup-qemu-action@v1
 
       - name: Set up Docker Buildx
         if: github.ref == 'refs/heads/master'
@@ -40,6 +48,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64
+          # AMD64 - build requires no compilation (architecture: all)
+          # ARM   - build requires hardware emulated compilation
+          # platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: pitop/test-run:latest
 

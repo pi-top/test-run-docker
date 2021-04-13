@@ -14,11 +14,7 @@ RUN apt-get install -y \
 # External dependencies
 RUN apt-get install -y \
   libv4l-dev \
-  yarnpkg \
-  # Additional deps for SDK
-  python3-numpy \
-  python3-opencv
-
+  yarnpkg
 
 RUN pip3 install \
   coverage \
@@ -28,8 +24,14 @@ RUN pip3 install \
   pipenv \
   pytest-cov \
   pytest \
-  # Additional deps for SDK (not available from apt, except from pi-top repo)
-  imutils
+  # Additional deps for SDK
+  # (ideally this would be done with apt to track package version in pi-topOS)
+  cv2 \
+  imutils \
+  numpy \
+  gpiozero \
+  pitopcommon
+
 
 ENV DEBUG=1
 ENV RUN_PYTHON_TESTS=1

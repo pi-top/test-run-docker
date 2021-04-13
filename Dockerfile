@@ -6,24 +6,26 @@ RUN apt-get update
 
 RUN apt-get install -y \
   git \
-	libsystemd-dev \
-	pkg-config \
-	python3-pip \
-	python3.7
+  libsystemd-dev \
+  pkg-config \
+  python3-pip \
+  python3.7
 
 # External dependencies
 RUN apt-get install -y \
-	libv4l-dev \
-	yarnpkg
+  libv4l-dev \
+  yarnpkg \
+  python3-imutils \
+  python3-opencv
 
 
 RUN pip3 install \
-	coverage \
-	cython \
-	nose \
-	nose-pathmunge \
-	pipenv \
-	pytest-cov \
+  coverage \
+  cython \
+  nose \
+  nose-pathmunge \
+  pipenv \
+  pytest-cov \
   pytest
 
 ENV DEBUG=1

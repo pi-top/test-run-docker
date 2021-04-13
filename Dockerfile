@@ -15,6 +15,8 @@ RUN apt-get install -y \
 RUN apt-get install -y \
   libv4l-dev \
   yarnpkg \
+  # Additional deps for SDK
+  python3-numpy \
   python3-opencv
 
 
@@ -26,7 +28,7 @@ RUN pip3 install \
   pipenv \
   pytest-cov \
   pytest \
-# Additional deps for SDK (not available from apt, except from pi-top repo)
+  # Additional deps for SDK (not available from apt, except from pi-top repo)
   imutils
 
 ENV DEBUG=1

@@ -13,24 +13,20 @@ RUN apt-get install -y \
 
 # External dependencies
 RUN apt-get install -y \
+  # Web UIs
+  yarnpkg \
+  # SDK
   libv4l-dev \
-  yarnpkg
+  python3-opencv
 
-RUN pip3 install \
+RUN pip3 install -U \
   coverage \
   cython \
   nose \
   nose-pathmunge \
   pipenv \
   pytest-cov \
-  pytest \
-  # Additional deps for SDK
-  # (ideally this would be done with apt to track package version in pi-topOS)
-  opencv-python \
-  imutils \
-  numpy \
-  gpiozero \
-  pitopcommon
+  pytest
 
 
 ENV DEBUG=1

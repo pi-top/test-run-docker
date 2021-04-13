@@ -26,7 +26,7 @@ RUN pip3 install \
   pytest \
   # Additional deps for SDK
   # (ideally this would be done with apt to track package version in pi-topOS)
-  cv2 \
+  opencv-python \
   imutils \
   numpy \
   gpiozero \

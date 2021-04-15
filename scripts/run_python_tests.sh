@@ -7,6 +7,7 @@ set -euo pipefail
 IFS=$'\n\t'
 ###############################################################
 
+workingDirectory=$(pwd)
 testsDirectory="${PYTHON_TESTS_DIR:-.}"
 targetDirectory="$PYTHON_TARGET_DIR"
 coverageDirectory="${PYTHON_COVERAGE_DIR:-$targetDirectory}"
@@ -25,12 +26,11 @@ if [[ -f "${targetDirectory}/Pipfile" ]]; then
   if [[ ! -f "Pipfile.lock" ]]; then
     pipenv install
   fi
-  pipenv sync
   pipenv sync --dev
-  cd -
+  cd "$workingDirectory"
 fi
 
-if grep -q -R pytest --include *.py "${targetDirectory}"; then
+if grep -q -R pytest --include '*.py' "${targetDirectory}"; then
   echo "Running tests using pytest..."
   cd "${targetDirectory}"
   PYTHONPATH="${coverageDirectory}" pipenv run pytest \
@@ -39,7 +39,7 @@ if grep -q -R pytest --include *.py "${targetDirectory}"; then
     --cov="${coverageDirectory}" \
     --junitxml=tests.xml
   pipenv run coverage xml
-  cd -
+  cd "$workingDirectory"
 else
   echo "Running tests using nosetests..."
   nosetests -v \

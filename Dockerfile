@@ -38,14 +38,19 @@ RUN apt-get install -y \
   # SDK
   libv4l-dev
 
+# Update pip to latest
+RUN python3 -m pip install -U pip
+
+# Test requirements
 RUN pip3 install -U \
-  # Test requirements
   coverage \
   cython \
   nose \
   nose-pathmunge \
   pipenv \
   pytest-cov \
-  pytest \
-  # SDK
+  pytest
+
+# SDK
+RUN pip3 install -U \
   opencv-python

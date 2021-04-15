@@ -26,7 +26,6 @@ if [[ -f "${targetDirectory}/Pipfile" ]]; then
   if [[ ! -f "Pipfile.lock" ]]; then
     pipenv install
   fi
-  pipenv sync
   pipenv sync --dev
   cd "$workingDirectory"
 fi

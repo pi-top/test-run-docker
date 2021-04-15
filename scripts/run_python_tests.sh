@@ -24,9 +24,9 @@ if [[ -f "${targetDirectory}/Pipfile" ]]; then
   echo "Pipfile found, installing..."
   cd "${targetDirectory}"
   if [[ ! -f "Pipfile.lock" ]]; then
-    pipenv install
+    pipenv install --verbose
   fi
-  pipenv sync --dev
+  pipenv sync --dev --verbose
   cd "$workingDirectory"
 fi
 
@@ -34,15 +34,15 @@ if grep -q -R pytest --include '*.py' "${targetDirectory}"; then
   echo "Running tests using pytest..."
   cd "${targetDirectory}"
   PYTHONPATH="${coverageDirectory}" pipenv run pytest \
-    -v \
+    --verbose \
     --cov-report term-missing \
     --cov="${coverageDirectory}" \
     --junitxml=tests.xml
-  pipenv run coverage xml
+  pipenv run coverage xml --verbose
   cd "$workingDirectory"
 else
   echo "Running tests using nosetests..."
-  nosetests -v \
+  nosetests --verbose \
     --with-xunit \
     --xunit-file=tests.xml \
     --with-path="${targetDirectory}" \

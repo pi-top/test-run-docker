@@ -38,7 +38,7 @@ RUN apt-get install -y \
   # SDK
   libv4l-dev
 
-# Update pip to latest
+# Update pip to latest (required to get pre-compiled OpenCV binaries)
 RUN python3 -m pip install -U pip
 
 # Test requirements

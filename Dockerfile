@@ -42,6 +42,10 @@ ENV WEB_TESTS_DIR=""
 
 WORKDIR /src
 
+
+# Add piwheels support (pre-compiled binary Python packages for RPi)
+COPY files/pip.conf /etc
+
 COPY scripts/entrypoint.sh /entrypoint
 COPY scripts/run_python_tests.sh /run_python_tests
 COPY scripts/run_web_tests.sh /run_web_tests

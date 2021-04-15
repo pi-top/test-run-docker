@@ -38,7 +38,7 @@ if grep -q -R pytest --include '*.py' "${targetDirectory}"; then
     --cov-report term-missing \
     --cov="${coverageDirectory}" \
     --junitxml=tests.xml
-  pipenv run coverage xml --verbose
+  pipenv run coverage xml --debug
   cd "$workingDirectory"
 else
   echo "Running tests using nosetests..."

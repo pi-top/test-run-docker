@@ -17,7 +17,7 @@ echo "Coverage directory is ${coverageDirectory}"
 
 if [[ -f "${testsDirectory}/requirements.txt" ]]; then
   echo "Tests dependencies found, installing..."
-  pip3 install --upgrade -r "${testsDirectory}/requirements.txt"
+  python3 -m pip install --upgrade -r "${testsDirectory}/requirements.txt"
 fi
 
 if [[ -f "${targetDirectory}/Pipfile" ]]; then

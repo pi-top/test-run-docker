@@ -42,7 +42,7 @@ RUN apt-get install -y \
 RUN python3 -m pip install -U pip
 
 # Test requirements
-RUN pip3 install -U \
+RUN python3 -m pip install -U \
   coverage \
   cython \
   nose \
@@ -52,5 +52,5 @@ RUN pip3 install -U \
   pytest
 
 # SDK
-RUN pip3 install -U \
+RUN python3 -m pip install -U \
   opencv-python

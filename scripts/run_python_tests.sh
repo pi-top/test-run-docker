@@ -30,7 +30,7 @@ if [[ -f "${targetDirectory}/Pipfile" ]]; then
   cd -
 fi
 
-if grep -q -R pytest --include *.py "${targetDirectory}"; then
+if grep -q -R pytest --include '*.py' "${targetDirectory}"; then
   echo "Running tests using pytest..."
   cd "${targetDirectory}"
   PYTHONPATH="${coverageDirectory}" pipenv run pytest \

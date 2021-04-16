@@ -28,7 +28,6 @@ RUN apt-get install --no-install-recommends -y \
   build-essential \
   cmake \
   git \
-  libsystemd-dev \
   pkg-config \
   python3-pip \
   python3-dev \

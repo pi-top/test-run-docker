@@ -44,7 +44,6 @@ RUN apt-get install --no-install-recommends -y \
   # Install opencv/sklearn from apt to get its system dependencies
   # But use pip later to get latest version
   python3-opencv \
-  python3-sklearn \
   # Additional OpenCV dependencies
   libopenblas-dev \
   liblapack-dev \

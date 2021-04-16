@@ -25,6 +25,8 @@ ENTRYPOINT ["/entrypoint"]
 RUN apt-get update
 
 RUN apt-get install -y \
+  build-essential \
+  cmake \
   git \
   libsystemd-dev \
   pkg-config \

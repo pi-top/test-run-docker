@@ -36,9 +36,14 @@ RUN apt-get install --no-install-recommends -y \
   # SDK - camera
   libv4l-dev \
   # SDK - additional OpenCV dependencies
-  libopenblas-dev \
+  libatlas-base-dev \
   liblapack-dev \
-  libatlas-base-dev
+  libopenblas-dev \
+  libsm6 \
+  libxext6 \
+  libfontconfig1 \
+  libxrender1 \
+  libgl1-mesa-glx
 
 # Python bootstrap for 'pip'
 RUN apt-get install --no-install-recommends -y \

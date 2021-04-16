@@ -35,8 +35,12 @@ RUN apt-get install -y \
 RUN apt-get install -y \
   # Web UIs
   yarnpkg \
-  # SDK
-  libv4l-dev
+  # SDK - camera
+  libv4l-dev \
+  # SDK - OpenCV/dlib
+  libopenblas-dev \
+  liblapack-dev \
+  libatlas-base-dev
 
 # Update pip to latest (required to get pre-compiled OpenCV binaries)
 RUN python3 -m pip install -U pip

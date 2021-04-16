@@ -17,7 +17,12 @@ echo "Coverage directory is ${coverageDirectory}"
 
 if [[ -f "${testsDirectory}/requirements.txt" ]]; then
   echo "Tests dependencies found, installing..."
-  python3 -m pip install --upgrade -r "${testsDirectory}/requirements.txt"
+  # --ignore-installed required for SDK's joblib dependency:
+  #
+  # ERROR: Cannot uninstall 'joblib'.
+  # It is a distutils installed project and thus we cannot accurately determine
+  # which files belong to it which would lead to only a partial uninstall.
+  python3 -m pip install --ignore-installed --upgrade -r "${testsDirectory}/requirements.txt"
 fi
 
 if [[ -f "${targetDirectory}/Pipfile" ]]; then

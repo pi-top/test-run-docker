@@ -35,12 +35,9 @@ RUN apt-get install --no-install-recommends -y \
 
 # External dependencies
 RUN apt-get install --no-install-recommends -y \
-  # Web UIs
-  yarnpkg \
   # SDK - camera
   libv4l-dev \
-  # SDK
-  # Additional OpenCV dependencies
+  # SDK - additional OpenCV dependencies
   libopenblas-dev \
   liblapack-dev \
   libatlas-base-dev

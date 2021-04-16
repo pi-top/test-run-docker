@@ -31,6 +31,7 @@ RUN apt-get install --no-install-recommends -y \
   libsystemd-dev \
   pkg-config \
   python3-pip \
+  python3-dev \
   python3.7
 
 # External dependencies

@@ -47,10 +47,10 @@ RUN apt-get install -y \
   libatlas-base-dev
 
 # Update pip to latest (required to get pre-compiled OpenCV binaries)
-RUN python3 -m pip install -U pip
+RUN python3 -m pip install --upgrade pip
 
 # Test requirements
-RUN python3 -m pip install -U \
+RUN python3 -m pip install --upgrade \
   coverage \
   cython \
   nose \
@@ -58,7 +58,3 @@ RUN python3 -m pip install -U \
   pipenv \
   pytest-cov \
   pytest
-
-# SDK
-RUN python3 -m pip install -U \
-  opencv-python

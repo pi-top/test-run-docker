@@ -41,9 +41,6 @@ RUN apt-get install --no-install-recommends -y \
   # SDK - camera
   libv4l-dev \
   # SDK
-  # Install opencv/sklearn from apt to get its system dependencies
-  # But use pip later to get latest version
-  python3-opencv \
   # Additional OpenCV dependencies
   libopenblas-dev \
   liblapack-dev \

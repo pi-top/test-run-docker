@@ -39,10 +39,11 @@ RUN apt-get install -y \
   yarnpkg \
   # SDK - camera
   libv4l-dev \
-  # SDK - OpenCV
-  # Install OpenCV from apt to get its system dependencies
+  # SDK
+  # Install opencv/sklearn from apt to get its system dependencies
   # But use pip later to get latest version
   python3-opencv \
+  python3-sklearn \
   # Additional OpenCV dependencies
   libopenblas-dev \
   liblapack-dev \

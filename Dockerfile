@@ -60,3 +60,8 @@ RUN python3 -m pip install --upgrade \
   pipenv \
   pytest-cov \
   pytest
+
+# dlib is only available from source (no wheels), so we include it here to save build time
+# https://pypi.org/project/dlib/#files
+RUN python3 -m pip install --upgrade \
+  dlib

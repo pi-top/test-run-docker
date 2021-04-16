@@ -61,7 +61,8 @@ RUN python3 -m pip install --upgrade \
   nose-pathmunge \
   pipenv \
   pytest-cov \
-  pytest
+  pytest \
+  yarnkpkg
 
 # dlib is only available from source (no wheels), so we include it here to save build time
 # https://pypi.org/project/dlib/#files

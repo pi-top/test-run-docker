@@ -24,16 +24,14 @@ ENTRYPOINT ["/entrypoint"]
 
 RUN apt-get update
 
+# Test suite build dependencies
 RUN apt-get install --no-install-recommends -y \
   build-essential \
   cmake \
-  git \
   pkg-config \
-  python3-pip \
-  python3-dev \
-  python3.7
+  python3-dev
 
-# External dependencies
+# Additional library dependencies to run specific tests across pi-top codebase
 RUN apt-get install --no-install-recommends -y \
   # SDK - camera
   libv4l-dev \
@@ -41,6 +39,11 @@ RUN apt-get install --no-install-recommends -y \
   libopenblas-dev \
   liblapack-dev \
   libatlas-base-dev
+
+# Python bootstrap for 'pip'
+RUN apt-get install --no-install-recommends -y \
+  python3-pip \
+  python3.7
 
 # Update pip to latest (required to get pre-compiled OpenCV binaries)
 RUN python3 -m pip install --upgrade pip

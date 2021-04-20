@@ -7,6 +7,11 @@ set -euo pipefail
 IFS=$'\n\t'
 ###############################################################
 
+VERBOSE=""
+if [[ "${DEBUG}" -eq 1 ]]; then
+  VERBOSE="--verbose"
+fi
+
 workingDirectory=$(pwd)
 testsDirectory="${PYTHON_TESTS_DIR:-.}"
 targetDirectory="$PYTHON_TARGET_DIR"
@@ -17,16 +22,16 @@ echo "Coverage directory is ${coverageDirectory}"
 
 if [[ -f "${testsDirectory}/requirements.txt" ]]; then
   echo "Tests dependencies found, installing..."
-  python3 -m pip install --verbose --upgrade -r "${testsDirectory}/requirements.txt"
+  python3 -m pip install "${VERBOSE}" --upgrade -r "${testsDirectory}/requirements.txt"
 fi
 
 if [[ -f "${targetDirectory}/Pipfile" ]]; then
   echo "Pipfile found, installing..."
   cd "${targetDirectory}"
   if [[ ! -f "Pipfile.lock" ]]; then
-    pipenv install --verbose
+    pipenv install "${VERBOSE}"
   fi
-  pipenv sync --dev --verbose
+  pipenv sync --dev "${VERBOSE}"
   cd "$workingDirectory"
 fi
 
@@ -34,7 +39,7 @@ if grep -q -R pytest --include '*.py' "${targetDirectory}"; then
   echo "Running tests using pytest..."
   cd "${targetDirectory}"
   PYTHONPATH="${coverageDirectory}" pipenv run pytest \
-    --verbose \
+    "${VERBOSE}" \
     --cov-report term-missing \
     --cov="${coverageDirectory}" \
     --junitxml=tests.xml

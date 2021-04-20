@@ -49,7 +49,9 @@ RUN apt-get install --no-install-recommends -y \
 # Python bootstrap for 'pip'
 RUN apt-get install --no-install-recommends -y \
   python3-pip \
-  python3.7
+  python3.7 \
+  python3-setuptools \
+  python3-wheel
 
 # Update pip to latest (required to get pre-compiled OpenCV binaries)
 RUN python3 -m pip install --upgrade pip
@@ -62,4 +64,5 @@ RUN python3 -m pip install --upgrade \
   nose-pathmunge \
   pipenv \
   pytest-cov \
-  pytest
+  pytest \
+  setuptools

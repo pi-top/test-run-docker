@@ -31,7 +31,7 @@ if [[ -f "${targetDirectory}/Pipfile" ]]; then
   if [[ ! -f "Pipfile.lock" ]]; then
     pipenv install "${VERBOSE}"
   fi
-  pipenv sync --dev "${VERBOSE}"
+  pipenv sync --dev $VERBOSE
   cd "$workingDirectory"
 fi
 

@@ -5,7 +5,7 @@ VOLUME /src
 # Add piwheels support (pre-compiled binary Python packages for RPi)
 COPY files/pip.conf /etc
 
-ENV DEBUG=0
+ENV DEBUG=1
 ENV RUN_PYTHON_TESTS=1
 ENV RUN_WEB_TESTS=0
 

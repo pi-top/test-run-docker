@@ -48,7 +48,7 @@ RUN apt-get install --no-install-recommends -y \
 
 # Python bootstrap for 'pip'
 RUN apt-get install --no-install-recommends -y \
-  python3.7 \
+  python3 \
   python3-pip \
   python3-setuptools \
   python3-wheel

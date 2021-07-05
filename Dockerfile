@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:buster
 
 VOLUME /src
 
@@ -24,13 +24,43 @@ ENTRYPOINT ["/entrypoint"]
 
 RUN apt-get update
 
+# Initialise Node.js v12 repository
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
 # Test suite build dependencies
 RUN apt-get install --no-install-recommends -y \
   build-essential \
   cmake \
   pkg-config \
   python3-dev \
-  yarnpkg
+  yarnpkg \
+  nodejs
+
+# pyenv dependencies
+RUN apt-get update && apt install -y \
+    make \
+    git \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    wget \
+    curl \
+    llvm \
+    libncurses5-dev \
+    libncursesw5-dev \
+    xz-utils \
+    tk-dev \
+    libffi-dev \
+    liblzma-dev
+
+# Install pyenv
+RUN curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+
+# Initialise pyenv
+RUN echo -e 'export PYENV_ROOT="$HOME/.pyenv"\nexport PATH="$PYENV_ROOT/bin:$PATH"\neval "$(pyenv init --path)"' >> ~/.profile
 
 # Additional library dependencies to run specific tests across pi-top codebase
 RUN apt-get install --no-install-recommends -y \
